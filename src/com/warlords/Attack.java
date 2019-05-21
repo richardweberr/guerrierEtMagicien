@@ -1,7 +1,7 @@
 package com.warlords;
 
 
-public class Attack {
+public abstract class Attack {
 
     //  attributes
     private String name;
@@ -40,6 +40,10 @@ public class Attack {
     public Attack(String name, int level) {
         this.name = name;
         this.level = level;
+    }
+
+    public String toString() {
+        return "Votre arme s'appelle: " + this.getName() + " et est de niveau: " + this.getLevel() + "\n";
     }
 }
 

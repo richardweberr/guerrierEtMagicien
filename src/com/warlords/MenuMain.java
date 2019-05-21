@@ -3,32 +3,43 @@ package com.warlords;
 import java.util.Scanner;
 
 
-public class ShowMenu {
+public class MenuMain {
 
-    private int showMenu = 1;
+    //  attributes
+    private int showMainMenu = 1;
+    private int showCharacterMenu = 1;
     private Scanner sc = new Scanner(System.in);
 
-
-    public int getShowMenu() {
-        return showMenu;
+    //mutator
+    public int getShowMainMenu() {
+        return showMainMenu;
     }
 
-    public void setShowMenu(int showMenu) {
-        this.showMenu = showMenu;
+    public void setShowMainMenu(int showMenu) {
+        this.showMainMenu = showMenu;
+    }
+
+    public int getShowCharacterMenu() {
+        return showCharacterMenu;
+    }
+
+    public void setShowCharacterMenu(int showCharacterMenu) {
+        this.showCharacterMenu = showCharacterMenu;
     }
 
 
+    //methods
     public void mainMenu() {
-
-        while (showMenu == 1) {
-            System.out.println("Saississez au clavier les numéros des lignes correspondant à vos choix \n" +
+        while (showMainMenu == 1) {
+            System.out.println("\n\n" +
+                    "Saississez au clavier les numéros des lignes correspondant à vos choix \n" +
                     "1. Voir tous les personnages crées\n" +
                     "2. Choisir un personnage\n" +
                     "3. Créer un personnage\n" +
                     "4. Supprimer un personnage\n" +
-                    "5. Quitter");
+                    "5. Quitter"
+            );
             String menuChoice = this.sc.nextLine();
-
             while (!menuChoice.equals("1") && !menuChoice.equals("2") && !menuChoice.equals("3") && !menuChoice.equals("4") && !menuChoice.equals("5")) {
                 System.out.println("1, 2, 3, 4 ou 5");
                 menuChoice = this.sc.nextLine();
@@ -47,7 +58,7 @@ public class ShowMenu {
                     this.deleteCharacter();
                     break;
                 case ("5"):
-                    setShowMenu(0);
+                    setShowMainMenu(0);
                     System.out.println("bye");
                     break;
                 default:
@@ -56,25 +67,43 @@ public class ShowMenu {
     }
 
     public void listCharacter() {
-
+        //list char
     }
 
     public void chooseCharacter() {
-
+        //choose character
+        this.characterMenu();
     }
 
-    public void displayWarriorInfo(Warrior warrior) {
-        System.out.println(warrior.printClassInfo());
-        System.out.println(warrior.printNameInfo());
-        System.out.println(warrior.printAttributeInfo());
-        System.out.println(warrior.printWeaponInfo());
-    }
-
-    public void displayMagicianInfo(Magician magician) {
-        System.out.println(magician.printClassInfo());
-        System.out.println(magician.printNameInfo());
-        System.out.println(magician.printAttributeInfo());
-        System.out.println(magician.printSpellInfo());
+    public void characterMenu() {
+        while (showCharacterMenu == 1) {
+            System.out.println("Voulez-vous\n" +
+                    "1. Voir les attributs du personnage\n" +
+                    "2. Modifier les attributs du personnage\n" +
+                    "3. Supprimer le personnage\n" +
+                    "4. Retour au menu principal\n"
+            );
+            String characterMenuChoice = this.sc.nextLine();
+            while (!characterMenuChoice.equals("1") && !characterMenuChoice.equals("2") && !characterMenuChoice.equals("3") && !characterMenuChoice.equals("4")) {
+                System.out.println("1, 2, 3 ou 4");
+                characterMenuChoice = this.sc.nextLine();
+            }
+            switch (characterMenuChoice) {
+                case ("1"):
+                    //show attributes
+                    break;
+                case ("2"):
+                    //modify attributes
+                    break;
+                case ("3"):
+                    //delete char
+                    break;
+                case ("4"):
+                    setShowCharacterMenu(0);
+                    break;
+                default:
+            }
+        }
     }
 
     public void createWarlord() {
@@ -98,7 +127,7 @@ public class ShowMenu {
     public void createWarrior() {
         System.out.println("Entrez le nom de votre Guerrier");
         String name = this.sc.nextLine();
-        System.out.println("Entrez l'URL de l'image  de votre Guerrier");
+        System.out.println("Entrez l'URL de l'image de votre Guerrier");
         String image = this.sc.nextLine();
         System.out.println("Entrez le niveau de vie de votre Guerrier");
         int lifeLevel = this.sc.nextInt();
@@ -115,9 +144,10 @@ public class ShowMenu {
         String shieldName = this.sc.nextLine();
 
         Weapon weapon = new Weapon(weaponName, weaponLevel);
-        Warrior warrior = new Warrior(name, image, lifeLevel, attackPower, weapon, shieldName);
+        Shield shield = new Shield(shieldName);
+        Warrior character = new Warrior(name, image, lifeLevel, attackPower, weapon, shield);
 
-        this.displayWarriorInfo(warrior);
+        this.displayWarriorInfo(character);
     }
 
     public void createMagician() {
@@ -140,9 +170,21 @@ public class ShowMenu {
         String potionName = this.sc.nextLine();
 
         Spell spell = new Spell(spellName, spellLevel);
-        Magician magician = new Magician(name, image, lifeLevel, attackPower, spell, potionName);
+        Potion potion = new Potion(potionName);
+        Magician character = new Magician(name, image, lifeLevel, attackPower, spell, potion);
 
-        this.displayMagicianInfo(magician);
+        System.out.println();
+    }
+
+    public void storeCharacter() {
+        System.out.println("Voulez-vous sauvegarder votre Personnage?\n Entrez y pour sauvergarder");
+        String storeCharacter = this.sc.nextLine();
+        if (storeCharacter.equals("y") || storeCharacter.equals("Y")) {
+            // store here
+            System.out.println("Personnage sauvegardé");
+        } else {
+            System.out.println("Personnage pas sauvegardé");
+        }
     }
 
     public void deleteCharacter() {

@@ -2,6 +2,8 @@ package com.warlords;
 
 
 public class Spell extends Attack {
+
+    //  constructor
     public Spell() {
     }
 

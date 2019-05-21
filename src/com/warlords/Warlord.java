@@ -1,13 +1,16 @@
 package com.warlords;
 
 
-public class Warlord {
+public abstract class Warlord {
 
     //  attributes
     private String name;
     private String image;
     private int lifeLevel;
     private int attackPower;
+    protected Attack attack;
+    protected Defense defense;
+
 
     //  mutator
     public String getName() {
@@ -42,40 +45,37 @@ public class Warlord {
         this.attackPower = attackPower;
     }
 
+    public abstract Attack getAttack();
+
+    public abstract void setAttack(Attack attack);
+
+    public abstract Defense getDefense();
+
+    public abstract void setDefense(Defense defense);
+
     //  constructor
     public Warlord() {
-        this.setName("Nom");
-        this.setImage("Image");
-        this.setLifeLevel(5);
-        this.setAttackPower(8);
     }
 
     public Warlord(String name) {
-        this.setName(name);
-        this.setImage("Image");
-        this.setLifeLevel(5);
-        this.setAttackPower(8);
+        this.name = name;
     }
 
-    public Warlord(String name, String image, int lifeLevel, int attackPower) {
-        this.setName(name);
-        this.setImage(image);
-        this.setLifeLevel(lifeLevel);
-        this.setAttackPower(attackPower);
+    public Warlord(String name, String image, int lifeLevel, int attackPower, Attack attack, Defense defense) {
+        this.name = name;
+        this.image = image;
+        this.lifeLevel = lifeLevel;
+        this.attackPower = attackPower;
+        this.attack = attack;
+        this.defense = defense;
     }
 
 
     //methods
-    public String printNameInfo() {
-        return (
-                "Nom de votre personnage: " + this.getName() + "\n" +
-                        "Image de votre personnage: " + this.getImage()
-        );
-    }
-    public String printAttributeInfo() {
-        return (
+    public String toString() {
+        return "Nom de votre personnage: " + this.getName() + "\n" +
+                "Image de votre personnage: " + this.getImage() + "\n" +
                 "Niveau de vie votre personnage: " + this.getLifeLevel() + "\n" +
-                        "Force d'attaque de votre personnage: " + this.getAttackPower()
-        );
+                "Force d'attaque de votre personnage: " + this.getAttackPower();
     }
 }

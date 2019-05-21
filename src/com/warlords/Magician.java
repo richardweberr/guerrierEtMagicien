@@ -4,74 +4,45 @@ package com.warlords;
 public class Magician extends Warlord {
 
     //  attributes
-    private Spell spell;
-    private String potion;
 
 
     //  mutator
-    public Spell getSpell() {
-        return spell;
+    @Override
+    public Attack getAttack() {
+        return this.attack;
     }
 
-    public void setSpell(String spellName, int spellLevel) {
-        this.spell = new Spell(spellName, spellLevel);
+    @Override
+    public void setAttack(Attack attack) {
+        this.attack = new Spell();
     }
 
-    public String getPotion() {
-        return potion;
+    @Override
+    public Defense getDefense() {
+        return this.defense;
     }
 
-    public void setPotion(String potion) {
-        this.potion = potion;
+    @Override
+    public void setDefense(Defense defense) {
+        this.defense = new Potion();
     }
 
 
     //  constructor
     public Magician() {
-        super();
-        this.setSpell("sort", 9);
-        this.setPotion("Philtre");
     }
 
     public Magician(String name) {
         super(name);
-        this.setSpell("sort", 9);
-        this.setPotion("Philtre");
     }
 
-    public Magician(String name, String image, int lifeLevel, int attackPower, Spell spell, String potion) {
-        super(name, image, lifeLevel, attackPower);
-//        this.setSpell(spell);
-        this.setPotion(potion);
+    public Magician(String name, String image, int lifeLevel, int attackPower, Attack attack, Defense defense) {
+        super(name, image, lifeLevel, attackPower, attack, defense);
     }
-
 
     //methods
-    public String printClassInfo() {
-        return (
-                "Vous avez la classe de Magicien"
-        );
-    }
-
-    public String printNameInfo() {
-        return (
-                "Nom de votre personnage: " + this.getName() + "\n" +
-                        "Image de votre personnage: " + this.getImage()
-        );
-    }
-
-    public String printAttributeInfo() {
-        return (
-                "Niveau de vie votre personnage: " + this.getLifeLevel() + "\n" +
-                        "Force d'attaque de votre personnage: " + this.getAttackPower()
-        );
-    }
-
-    public String printSpellInfo() {
-        return (
-                "Votre Sort s'appelle: " + this.getSpell().getName() + " et est de niveau: " + this.getSpell().getLevel() + "\n" +
-                        "Votre Potion s'appelle: " + this.getPotion()
-        );
+    public String toString() {
+        return "Vous avez la classe de Magicien";
     }
 
 }
