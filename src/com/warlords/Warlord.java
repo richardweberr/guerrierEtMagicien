@@ -72,7 +72,7 @@ public class Warlord {
                         "Image de votre personnage: " + this.getImage()
         );
     }
-    public String printAttibuteInfo() {
+    public String printAttributeInfo() {
         return (
                 "Niveau de vie votre personnage: " + this.getLifeLevel() + "\n" +
                         "Force d'attaque de votre personnage: " + this.getAttackPower()

@@ -53,6 +53,20 @@ public class Magician extends Warlord {
         );
     }
 
+    public String printNameInfo() {
+        return (
+                "Nom de votre personnage: " + this.getName() + "\n" +
+                        "Image de votre personnage: " + this.getImage()
+        );
+    }
+
+    public String printAttributeInfo() {
+        return (
+                "Niveau de vie votre personnage: " + this.getLifeLevel() + "\n" +
+                        "Force d'attaque de votre personnage: " + this.getAttackPower()
+        );
+    }
+
     public String printSpellInfo() {
         return (
                 "Votre Sort s'appelle: " + this.getSpell().getName() + " et est de niveau: " + this.getSpell().getLevel() + "\n" +

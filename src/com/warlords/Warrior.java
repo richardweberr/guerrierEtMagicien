@@ -13,8 +13,8 @@ public class Warrior extends Warlord {
         return weapon;
     }
 
-    public void setWeapon(String weaponName, int weaponLevel) {
-        this.weapon = new Weapon(weaponName, weaponLevel);
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 
     public String getShield() {
@@ -29,33 +29,41 @@ public class Warrior extends Warlord {
     //  constructor
     public Warrior() {
         super();
-        this.setWeapon("épée", 1);
+        this.setWeapon(weapon);
         this.setShield("bouclier");
     }
 
     public Warrior(String name) {
         super(name);
-        this.setWeapon("épée", 1);
+        this.setWeapon(weapon);
         this.setShield("bouclier");
     }
 
     public Warrior(String name, String image, int lifeLevel, int attackPower, Weapon weapon, String shield) {
         super(name, image, lifeLevel, attackPower);
-        this.setWeapon(weapon.getName(), weapon.getLevel());
+        this.setWeapon(weapon);
         this.setShield(shield);
     }
-
-//    public Warrior(String name, String image, int lifeLevel, int attackPower, String  weaponName, int weaponLevel, String shield) {
-//        super(name, image, lifeLevel, attackPower);
-//        this.setWeapon(weaponName, weaponLevel);
-//        this.setShield("bouclier");
-//    }
 
 
     //methods
     public String printClassInfo() {
         return (
                 "Vous avez la classe de Guerrier"
+        );
+    }
+
+    public String printNameInfo() {
+        return (
+                "Nom de votre personnage: " + this.getName() + "\n" +
+                        "Image de votre personnage: " + this.getImage()
+        );
+    }
+
+    public String printAttributeInfo() {
+        return (
+                "Niveau de vie votre personnage: " + this.getLifeLevel() + "\n" +
+                        "Force d'attaque de votre personnage: " + this.getAttackPower()
         );
     }
 
