@@ -1,16 +1,15 @@
 package com.warlords;
 
 
-public class Weapon {
+public class Weapon extends Attack{
+    public Weapon() {
+    }
 
-    //  attributes
-    private String name;
-    private int level;
+    public Weapon(String name) {
+        super(name);
+    }
 
-
-    //  constructor
     public Weapon(String name, int level) {
-        this.name = name;
-        this.level = level;
+        super(name, level);
     }
 }

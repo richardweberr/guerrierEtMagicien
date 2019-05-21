@@ -10,8 +10,6 @@ public class Warlord {
     private int attackPower;
 
     //  mutator
-
-
     public String getName() {
         return name;
     }
@@ -46,23 +44,38 @@ public class Warlord {
 
     //  constructor
     public Warlord() {
-        this.name = "Nom";
-        this.image = "image";
-        this.lifeLevel = 3;
-        this.attackPower = 8;
+        this.setName("Nom");
+        this.setImage("Image");
+        this.setLifeLevel(5);
+        this.setAttackPower(8);
     }
 
     public Warlord(String name) {
-        this.name = name;
-        this.image = "image";
-        this.lifeLevel = 3;
-        this.attackPower = 8;
+        this.setName(name);
+        this.setImage("Image");
+        this.setLifeLevel(5);
+        this.setAttackPower(8);
     }
 
     public Warlord(String name, String image, int lifeLevel, int attackPower) {
-        this.name = name;
-        this.image = image;
-        this.lifeLevel = lifeLevel;
-        this.attackPower = attackPower;
+        this.setName(name);
+        this.setImage(image);
+        this.setLifeLevel(lifeLevel);
+        this.setAttackPower(attackPower);
+    }
+
+
+    //methods
+    public String printNameInfo() {
+        return (
+                "Nom de votre personnage: " + this.getName() + "\n" +
+                        "Image de votre personnage: " + this.getImage()
+        );
+    }
+    public String printAttibuteInfo() {
+        return (
+                "Niveau de vie votre personnage: " + this.getLifeLevel() + "\n" +
+                        "Force d'attaque de votre personnage: " + this.getAttackPower()
+        );
     }
 }
