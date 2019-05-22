@@ -9,6 +9,7 @@ public class MenuMain {
     private Scanner sc = new Scanner(System.in);
     private int showMainMenu = 1;
     private int showCharacterMenu = 1;
+    private int showAttributeMenu = 1;
     private int characterCounter;
     private Warlord[] characterList = new Warlord[6];
 
@@ -30,6 +31,13 @@ public class MenuMain {
         this.showCharacterMenu = showCharacterMenu;
     }
 
+    public int getShowAttributerMenu() {
+        return showAttributeMenu;
+    }
+
+    public void setShowAttributeMenu(int showAttributeMenu) {
+        this.showAttributeMenu = showAttributeMenu;
+    }
 
     //methods
     public void mainMenu() {
@@ -116,7 +124,7 @@ public class MenuMain {
                     System.out.println(character);
                     break;
                 case ("2"):
-                    //modify attributes
+                    characterAttributesMenu(characterIndex);
                     break;
                 case ("3"):
                     this.deleteCharacter(characterIndex);
@@ -125,6 +133,69 @@ public class MenuMain {
                     break;
                 case ("4"):
                     this.setShowCharacterMenu(0);
+                    break;
+                default:
+            }
+        }
+    }
+
+    private void characterAttributesMenu(int characterIndex) {
+        while (this.showAttributeMenu == 1) {
+            System.out.println("Selectionner le numéro de l'attribut que vous voulez modifier dans la liste\n" +
+                            "1. Le nom\n" +
+                            "2. L'adresse de l'image\n" +
+                            "3. Le niveau de vie\n" +
+                            "4. La force d'attaque\n" +
+                            "5. Le nom de votre arme ou sort\n" +
+                            "6. La force de votre arme ou sort\n" +
+                            "7. Le nom de votre bouclier ou philtre\n" +
+                    "8. Retour au menu précédent");
+            String attributeChoice = this.sc.nextLine();
+            while (!attributeChoice.equals("1") && !attributeChoice.equals("2") && !attributeChoice.equals("3") && !attributeChoice.equals("4")
+                    && !attributeChoice.equals("5") && !attributeChoice.equals("6") && !attributeChoice.equals("7") && !attributeChoice.equals("8")) {
+                System.out.println("1, 2, 3, 4 ou 5");
+                attributeChoice = this.sc.nextLine();
+            }
+            switch (attributeChoice) {
+                case ("1"):
+                    System.out.println("Entrez le nom de votre Personnage");
+                    String name = this.sc.nextLine();
+                    characterList[characterIndex].setName(name);
+                    break;
+                case ("2"):
+                    System.out.println("Entrez l'URL de l'image de votre Personnage");
+                    String image = this.sc.nextLine();
+                    characterList[characterIndex].setImage(image);
+                    break;
+                case ("3"):
+                    System.out.println("Entrez le niveau de vie de votre Personnage");
+                    int lifeLevel = this.sc.nextInt();
+                    this.sc.nextLine();
+                    characterList[characterIndex].setLifeLevel(lifeLevel);
+                    break;
+                case ("4"):
+                    System.out.println("Entrez la force d'attaque de votre Personnage");
+                    int attackPower = this.sc.nextInt();
+                    this.sc.nextLine();
+                    characterList[characterIndex].setAttackPower(attackPower);
+                    break;
+                case ("5"):
+                    System.out.println("Entrez le nom de l'arme ou du sort de votre Personnage");
+                    String attackItemName = this.sc.nextLine();
+//                    characterList[characterIndex].setAttack().setName(attackItemName);
+                    break;
+                case ("6"):
+                    System.out.println("Entrez le niveau de l'arme ou du sort de votre Personnage");
+                    String attackItemLevel = this.sc.nextLine();
+//                    characterList[characterIndex].setAttack().setLevel(attackItemLevel);
+                    break;
+                case ("7"):
+                    System.out.println("Entrez le nom du bouclier ou sort de votre Personnage");
+                    String defenseItemName = this.sc.nextLine();
+//                    characterList[characterIndex].setDefense().setName(defenseItemName);
+                    break;
+                case ("8"):
+                    this.setShowAttributeMenu(0);
                     break;
                 default:
             }
@@ -154,22 +225,11 @@ public class MenuMain {
 
         System.out.println("Entrez le nom de votre Guerrier");
         String name = this.sc.nextLine();
-//        System.out.println("Entrez l'URL de l'image de votre Guerrier");
-//        String image = this.sc.nextLine();
         String image = "imgURL";
-//        System.out.println("Entrez le niveau de vie de votre Guerrier");
-//        int lifeLevel = this.sc.nextInt();
-//        this.sc.nextLine();
         int lifeLevel = generateRandom(5, 10);
-//        System.out.println("Entrez la force d'attaque de votre Guerrier");
-//        int attackPower = this.sc.nextInt();
-//        this.sc.nextLine();
         int attackPower = generateRandom(5, 10);
         System.out.println("Entrez le nom de votre arme");
         String weaponName = this.sc.nextLine();
-//        System.out.println("Entrez le niveau de votre arme");
-//        int weaponLevel = this.sc.nextInt();
-//        this.sc.nextLine();
         int weaponLevel = generateRandom(1, 10);
         System.out.println("Entrez le nom de votre bouclier");
         String shieldName = this.sc.nextLine();
@@ -186,22 +246,11 @@ public class MenuMain {
 
         System.out.println("Entrez le nom de votre Magicien");
         String name = this.sc.nextLine();
-//        System.out.println("Entrez l'URL de l'image de votre Magicien");
-//        String image = this.sc.nextLine();
         String image = "imgURL";
-//        System.out.println("Entrez le niveau de vie de votre Magicien");
-//        int lifeLevel = this.sc.nextInt();
-//        this.sc.nextLine();
         int lifeLevel = generateRandom(3, 6);
-//        System.out.println("Entrez la force d'attaque de votre Magicien");
-//        int attackPower = this.sc.nextInt();
-//        this.sc.nextLine();
         int attackPower = generateRandom(8, 15);
         System.out.println("Entrez le nom de votre sort");
         String spellName = this.sc.nextLine();
-//        System.out.println("Entrez le niveau de votre sort");
-//        int spellLevel = this.sc.nextInt();
-//        this.sc.nextLine();
         int spellLevel = generateRandom(1, 10);
         System.out.println("Entrez le nom de votre philtre");
         String potionName = this.sc.nextLine();
