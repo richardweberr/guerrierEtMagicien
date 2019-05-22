@@ -31,11 +31,11 @@ public class MenuMain {
         this.showCharacterMenu = showCharacterMenu;
     }
 
-    public int getShowAttributerMenu() {
+    private int getShowAttributerMenu() {
         return showAttributeMenu;
     }
 
-    public void setShowAttributeMenu(int showAttributeMenu) {
+    private void setShowAttributeMenu(int showAttributeMenu) {
         this.showAttributeMenu = showAttributeMenu;
     }
 
@@ -81,28 +81,12 @@ public class MenuMain {
         }
     }
 
-    private void listCharacter() {
-        for (int i = 1; i < characterList.length; i++) {
-            if (characterList[i] != null) {
-                System.out.println("Personnage: " + i + "\n" + characterList[i]);
-            }
-        }
-    }
-
     private void chooseCharacterMenu() {
         for (int i = 1; i < characterList.length; i++) {
             if (characterList[i] != null) {
                 System.out.println("Personnage: " + i + " -- " + "Nom: " + characterList[i].getName() + "\n");
             }
         }
-    }
-
-    private int chooseCharacter() {
-        System.out.println("Entrez le numero du personnage que vous voulez selectionner");
-        int characterIndexNum = this.sc.nextInt();
-        this.sc.nextLine();
-
-        return (characterIndexNum);
     }
 
     private void characterMenu(int characterIndex) {
@@ -142,13 +126,13 @@ public class MenuMain {
     private void characterAttributesMenu(int characterIndex) {
         while (this.showAttributeMenu == 1) {
             System.out.println("Selectionner le numéro de l'attribut que vous voulez modifier dans la liste\n" +
-                            "1. Le nom\n" +
-                            "2. L'adresse de l'image\n" +
-                            "3. Le niveau de vie\n" +
-                            "4. La force d'attaque\n" +
-                            "5. Le nom de votre arme ou sort\n" +
-                            "6. La force de votre arme ou sort\n" +
-                            "7. Le nom de votre bouclier ou philtre\n" +
+                    "1. Le nom\n" +
+                    "2. L'adresse de l'image\n" +
+                    "3. Le niveau de vie\n" +
+                    "4. La force d'attaque\n" +
+                    "5. Le nom de votre arme ou sort\n" +
+                    "6. La force de votre arme ou sort\n" +
+                    "7. Le nom de votre bouclier ou philtre\n" +
                     "8. Retour au menu précédent");
             String attributeChoice = this.sc.nextLine();
             while (!attributeChoice.equals("1") && !attributeChoice.equals("2") && !attributeChoice.equals("3") && !attributeChoice.equals("4")
@@ -182,17 +166,18 @@ public class MenuMain {
                 case ("5"):
                     System.out.println("Entrez le nom de l'arme ou du sort de votre Personnage");
                     String attackItemName = this.sc.nextLine();
-//                    characterList[characterIndex].setAttack().setName(attackItemName);
+                    characterList[characterIndex].getAttack().setName(attackItemName);
                     break;
                 case ("6"):
                     System.out.println("Entrez le niveau de l'arme ou du sort de votre Personnage");
-                    String attackItemLevel = this.sc.nextLine();
-//                    characterList[characterIndex].setAttack().setLevel(attackItemLevel);
+                    int attackItemLevel = this.sc.nextInt();
+                    this.sc.nextLine();
+                    characterList[characterIndex].getAttack().setLevel(attackItemLevel);
                     break;
                 case ("7"):
                     System.out.println("Entrez le nom du bouclier ou sort de votre Personnage");
                     String defenseItemName = this.sc.nextLine();
-//                    characterList[characterIndex].setDefense().setName(defenseItemName);
+                    characterList[characterIndex].getDefense().setName(defenseItemName);
                     break;
                 case ("8"):
                     this.setShowAttributeMenu(0);
@@ -200,6 +185,22 @@ public class MenuMain {
                 default:
             }
         }
+    }
+
+    private void listCharacter() {
+        for (int i = 1; i < characterList.length; i++) {
+            if (characterList[i] != null) {
+                System.out.println("Personnage: " + i + "\n" + characterList[i]);
+            }
+        }
+    }
+
+    private int chooseCharacter() {
+        System.out.println("Entrez le numero du personnage que vous voulez selectionner");
+        int characterIndexNum = this.sc.nextInt();
+        this.sc.nextLine();
+
+        return (characterIndexNum);
     }
 
     private void createWarlord() {
