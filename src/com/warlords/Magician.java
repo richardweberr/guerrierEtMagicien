@@ -40,9 +40,13 @@ public class Magician extends Warlord {
         super(name, image, lifeLevel, attackPower, attack, defense);
     }
 
+
     //methods
     public String toString() {
-        return "Vous avez la classe de Magicien";
+        return "Vous avez la classe de Magicien\n" +
+                super.toString() + "\n" +
+                "Votre sort " + this.getAttack().getName() + " est de niveau " + this.getAttack().getLevel() + "\n" +
+                "Votre philtre s'appelle " + this.getDefense().getName() + "\n";
     }
 
 }

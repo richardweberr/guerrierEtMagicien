@@ -40,8 +40,12 @@ public class Warrior extends Warlord {
         super(name, image, lifeLevel, attackPower, attack, defense);
     }
 
+
     //methods
     public String toString() {
-        return "Vous avez la classe de Guerrier";
+        return "Vous avez la classe de Guerrier\n" +
+                super.toString() + "\n" +
+                "Votre arme " + this.getAttack().getName() + " est de niveau " + this.getAttack().getLevel() + "\n" +
+                "Votre bouclier s'appelle " + this.getDefense().getName() + "\n";
     }
 }
