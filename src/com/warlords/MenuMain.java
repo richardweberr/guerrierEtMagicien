@@ -202,11 +202,11 @@ public class MenuMain {
         System.out.println("Entrez le nom de votre Guerrier");
         String name = this.sc.nextLine();
         String image = "imgURL";
-        int lifeLevel = generateRandom(5, 10);
-        int attackPower = generateRandom(5, 10);
+        int lifeLevel = generateRandom(Warrior.getMINLIFELEVEL(), Warrior.getMAXLIFELEVEL());
+        int attackPower = generateRandom(Warrior.getMINATTACKPOWER(), Warrior.getMAXATTACKPOWER());
         System.out.println("Entrez le nom de votre arme");
         String weaponName = this.sc.nextLine();
-        int weaponLevel = generateRandom(1, 10);
+        int weaponLevel = generateRandom(Weapon.getMINLEVEL(), Weapon.getMAXLEVEL());
         System.out.println("Entrez le nom de votre bouclier");
         String shieldName = this.sc.nextLine();
 
@@ -223,11 +223,11 @@ public class MenuMain {
         System.out.println("Entrez le nom de votre Magicien");
         String name = this.sc.nextLine();
         String image = "imgURL";
-        int lifeLevel = generateRandom(3, 6);
-        int attackPower = generateRandom(8, 15);
+        int lifeLevel = generateRandom(Magician.getMINLIFELEVEL(), Magician.getMAXLIFELEVEL());
+        int attackPower = generateRandom(Magician.getMINATTACKPOWER(), Magician.getMAXATTACKPOWER());
         System.out.println("Entrez le nom de votre sort");
         String spellName = this.sc.nextLine();
-        int spellLevel = generateRandom(1, 10);
+        int spellLevel = generateRandom(Spell.getMINLEVEL(), Spell.getMAXLEVEL());
         System.out.println("Entrez le nom de votre philtre");
         String potionName = this.sc.nextLine();
 
