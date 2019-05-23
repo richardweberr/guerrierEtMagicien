@@ -53,6 +53,7 @@ public abstract class Warlord {
 
     public abstract void setDefense(Defense defense);
 
+
     //  constructor
     public Warlord() {
     }

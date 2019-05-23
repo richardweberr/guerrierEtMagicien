@@ -4,9 +4,53 @@ package com.warlords;
 public class Warrior extends Warlord {
 
     //  attributes
+    private final int MINLIFELVL = 5;
+    private final int MAXLIFELVL = 10;
+    private final int MINATTACKPOWER = 5;
+    private final int MAXATTACKPOWER = 10;
 
 
     //  mutator
+    public int getMINLIFELVL() {
+        return MINLIFELVL;
+    }
+
+    public int getMAXLIFELVL() {
+        return MAXLIFELVL;
+    }
+
+    public int getMINATTACKPOWER() {
+        return MINATTACKPOWER;
+    }
+
+    public int getMAXATTACKPOWER() {
+        return MAXATTACKPOWER;
+    }
+
+    @Override
+    public void setLifeLevel(int lifeLevel) {
+        if (lifeLevel <= this.getMINLIFELVL()) {
+            lifeLevel = this.getMINLIFELVL();
+            super.setLifeLevel(lifeLevel);
+        }
+        if (lifeLevel >= this.getMAXLIFELVL()) {
+            lifeLevel = this.getMAXLIFELVL();
+            super.setLifeLevel(lifeLevel);
+        }
+    }
+
+    @Override
+    public void setAttackPower(int attackPower) {
+        if (attackPower <= this.getMINATTACKPOWER()) {
+            attackPower = this.getMAXATTACKPOWER();
+            super.setAttackPower(attackPower);
+        }
+        if (attackPower >= this.getMAXATTACKPOWER()) {
+            attackPower = this.getMAXATTACKPOWER();
+            super.setAttackPower(attackPower);
+        }
+    }
+
     @Override
     public Attack getAttack() {
         return this.attack;
@@ -41,7 +85,8 @@ public class Warrior extends Warlord {
     }
 
 
-    //methods
+    //  methods
+    @Override
     public String toString() {
         return "Vous avez la classe de Guerrier\n" +
                 super.toString() + "\n" +

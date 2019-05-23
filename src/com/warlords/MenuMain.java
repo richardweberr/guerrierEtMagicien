@@ -7,42 +7,18 @@ public class MenuMain {
 
     //  attributes
     private Scanner sc = new Scanner(System.in);
-    private int showMainMenu = 1;
-    private int showCharacterMenu = 1;
-    private int showAttributeMenu = 1;
-    private int characterCounter;
+    private int characterCounter = 1;
     private Warlord[] characterList = new Warlord[6];
 
 
-    //mutator
-    private int getShowMainMenu() {
-        return showMainMenu;
-    }
+    //  mutator
 
-    private void setShowMainMenu(int showMenu) {
-        this.showMainMenu = showMenu;
-    }
 
-    private int getShowCharacterMenu() {
-        return showCharacterMenu;
-    }
-
-    private void setShowCharacterMenu(int showCharacterMenu) {
-        this.showCharacterMenu = showCharacterMenu;
-    }
-
-    private int getShowAttributerMenu() {
-        return showAttributeMenu;
-    }
-
-    private void setShowAttributeMenu(int showAttributeMenu) {
-        this.showAttributeMenu = showAttributeMenu;
-    }
-
-    //methods
+    //  methods
     public void mainMenu() {
         characterCounter = 1;
-        while (showMainMenu == 1) {
+        boolean showMainMenu = true;
+        while (showMainMenu) {
             System.out.println("\n" +
                     "Saississez au clavier les numéros des lignes correspondant à vos choix \n" +
                     "1. Voir tous les personnages crées\n" +
@@ -73,10 +49,10 @@ public class MenuMain {
                     this.deleteCharacter(chooseCharacter());
                     break;
                 case ("5"):
-                    setShowMainMenu(0);
+                    showMainMenu = false;
+                    sc.close();
                     System.out.println("bye");
                     break;
-                default:
             }
         }
     }
@@ -91,7 +67,8 @@ public class MenuMain {
 
     private void characterMenu(int characterIndex) {
         Warlord character = this.characterList[characterIndex];
-        while (this.showCharacterMenu == 1) {
+        boolean characterMenu = true;
+        while (characterMenu) {
             System.out.println("Voulez-vous\n" +
                     "1. Voir les attributs du personnage\n" +
                     "2. Modifier les attributs du personnage\n" +
@@ -113,18 +90,18 @@ public class MenuMain {
                 case ("3"):
                     this.deleteCharacter(characterIndex);
                     System.out.println("Personnage effacé");
-                    this.setShowCharacterMenu(0);
+                    characterMenu = false;
                     break;
                 case ("4"):
-                    this.setShowCharacterMenu(0);
+                    characterMenu = false;
                     break;
-                default:
             }
         }
     }
 
     private void characterAttributesMenu(int characterIndex) {
-        while (this.showAttributeMenu == 1) {
+        boolean attributeMenu = true;
+        while (attributeMenu) {
             System.out.println("Selectionner le numéro de l'attribut que vous voulez modifier dans la liste\n" +
                     "1. Le nom\n" +
                     "2. L'adresse de l'image\n" +
@@ -180,9 +157,8 @@ public class MenuMain {
                     characterList[characterIndex].getDefense().setName(defenseItemName);
                     break;
                 case ("8"):
-                    this.setShowAttributeMenu(0);
+                    attributeMenu = false;
                     break;
-                default:
             }
         }
     }
@@ -217,7 +193,6 @@ public class MenuMain {
             case ("2"):
                 this.createMagician();
                 break;
-            default:
         }
     }
 
