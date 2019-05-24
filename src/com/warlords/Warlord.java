@@ -76,7 +76,7 @@ public abstract class Warlord {
     public String toString() {
         return "Nom de votre personnage: " + this.getName() + "\n" +
                 "Image de votre personnage: " + this.getImage() + "\n" +
-                "Niveau de vie votre personnage: " + this.getLifeLevel() + "\n" +
+                "Niveau de vie de votre personnage: " + this.getLifeLevel() + "\n" +
                 "Force d'attaque de votre personnage: " + this.getAttackPower();
     }
 }

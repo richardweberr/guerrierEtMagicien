@@ -1,5 +1,7 @@
 package com.warlords;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -9,6 +11,7 @@ public class MenuMain {
     private Scanner sc = new Scanner(System.in);
     private int characterCounter = 1;
     private Warlord[] characterList = new Warlord[6];
+    //  private ArrayList<Warlord> characterList = new ArrayList<Warlord>();
 
 
     //  mutator
@@ -114,53 +117,109 @@ public class MenuMain {
             String attributeChoice = this.sc.nextLine();
             while (!attributeChoice.equals("1") && !attributeChoice.equals("2") && !attributeChoice.equals("3") && !attributeChoice.equals("4")
                     && !attributeChoice.equals("5") && !attributeChoice.equals("6") && !attributeChoice.equals("7") && !attributeChoice.equals("8")) {
-                System.out.println("1, 2, 3, 4 ou 5");
+                System.out.println("1, 2, 3, 4, 5, 6, 7 ou 8");
                 attributeChoice = this.sc.nextLine();
             }
             switch (attributeChoice) {
                 case ("1"):
-                    System.out.println("Entrez le nom de votre Personnage");
-                    String name = this.sc.nextLine();
-                    characterList[characterIndex].setName(name);
+                    characterList[characterIndex].setName(attributeDialogName());
+                    System.out.println("Le nom de votre Personnage est maintenant " + characterList[characterIndex].getName());
                     break;
                 case ("2"):
-                    System.out.println("Entrez l'URL de l'image de votre Personnage");
-                    String image = this.sc.nextLine();
-                    characterList[characterIndex].setImage(image);
+                    characterList[characterIndex].setImage(attributeDialogImage());
+                    System.out.println("l'URL de l'image de votre Personnage est maintenant " + characterList[characterIndex].getImage());
                     break;
                 case ("3"):
-                    System.out.println("Entrez le niveau de vie de votre Personnage");
-                    int lifeLevel = this.sc.nextInt();
-                    this.sc.nextLine();
-                    characterList[characterIndex].setLifeLevel(lifeLevel);
+                    characterList[characterIndex].setLifeLevel(attributeDialogLifeLevel());
+                    System.out.println("Le niveau de vie de votre Personnage est maintenant " + characterList[characterIndex].getLifeLevel());
                     break;
                 case ("4"):
-                    System.out.println("Entrez la force d'attaque de votre Personnage");
-                    int attackPower = this.sc.nextInt();
-                    this.sc.nextLine();
-                    characterList[characterIndex].setAttackPower(attackPower);
+                    characterList[characterIndex].setAttackPower(attributeDialogAttackPower());
+                    System.out.println("La force d'attaque de votre Personnage est maintenant " + characterList[characterIndex].getAttackPower());
                     break;
                 case ("5"):
-                    System.out.println("Entrez le nom de l'arme ou du sort de votre Personnage");
-                    String attackItemName = this.sc.nextLine();
-                    characterList[characterIndex].getAttack().setName(attackItemName);
+                    characterList[characterIndex].getAttack().setName(attributeDialogAttackName());
+                    System.out.println("La nom de l'arme de votre Personnage est maintenant " + characterList[characterIndex].getAttack().getName());
                     break;
                 case ("6"):
-                    System.out.println("Entrez le niveau de l'arme ou du sort de votre Personnage");
-                    int attackItemLevel = this.sc.nextInt();
-                    this.sc.nextLine();
-                    characterList[characterIndex].getAttack().setLevel(attackItemLevel);
+                    characterList[characterIndex].getAttack().setLevel(attributeDialogAttackLevel());
+                    System.out.println("Le niveau de l'arme de votre Personnage est maintenant " + characterList[characterIndex].getAttack().getLevel());
                     break;
                 case ("7"):
-                    System.out.println("Entrez le nom du bouclier ou sort de votre Personnage");
-                    String defenseItemName = this.sc.nextLine();
-                    characterList[characterIndex].getDefense().setName(defenseItemName);
+                    characterList[characterIndex].getDefense().setName(attributeDialogDefenseName());
+                    System.out.println("Le nom du bouclier de votre personnage est maintenant " + characterList[characterIndex].getDefense().getName());
                     break;
                 case ("8"):
                     attributeMenu = false;
                     break;
             }
         }
+    }
+
+    private String attributeDialogName() {
+        System.out.println("Entrez le nom de votre Personnage");
+        return this.sc.nextLine();
+    }
+
+    private String attributeDialogImage() {
+        System.out.println("Entrez l'URL de l'image de votre Personnage");
+        return this.sc.nextLine();
+    }
+
+    private int attributeDialogLifeLevel() {
+        int lifeLevel = 0;
+        do {
+            System.out.println("Entrez le niveau de vie de votre Personnage\n" +
+                    "Valeur entre :\n" +
+                    "Pour les Guerriers: " + Warrior.getMINLIFELEVEL() + " et " + Warrior.getMAXLIFELEVEL() + "\n" +
+                    "Pour les Magiciens: " + Magician.getMINLIFELEVEL() + " et " + Magician.getMAXLIFELEVEL());
+            return testInteger(sc.nextLine());
+        } while (lifeLevel == 0);
+    }
+
+    private int attributeDialogAttackPower() {
+        int attackPower = 0;
+        do {
+            System.out.println("Entrez la force d'attaque de votre Personnage\n" +
+                    "Valeur entre :\n" +
+                    "Pour les Guerriers: " + Warrior.getMINATTACKPOWER() + " et " + Warrior.getMAXATTACKPOWER() + "\n" +
+                    "Pour les Magiciens: " + Magician.getMINATTACKPOWER() + " et " + Magician.getMAXATTACKPOWER());
+            return testInteger(sc.nextLine());
+        } while (attackPower == 0);
+    }
+
+    private String attributeDialogAttackName() {
+        System.out.println("Entrez le nom de votre arme/sort ");
+        return this.sc.nextLine();
+    }
+
+    private int attributeDialogAttackLevel() {
+        int attacklevel = 0;
+        do {
+            System.out.println("Entrez le niveau de votre arme/sort\n" +
+                    "Valeur entre :\n" +
+                    "Pour les Armes: " + Weapon.getMINLEVEL() + " et " + Weapon.getMAXLEVEL() + "\n" +
+                    "Pour les Sorts: " + Spell.getMINLEVEL() + " et " + Spell.getMAXLEVEL());
+            
+            return testInteger(sc.nextLine());
+        } while (attacklevel == 0);
+    }
+
+    private String attributeDialogDefenseName() {
+        System.out.println("Entrez le nom de votre bouclier/philtre");
+        return this.sc.nextLine();
+    }
+
+    private int testInteger(String stringToTest) {
+        int testedString = 0;
+        try {
+            testedString = Integer.parseInt(stringToTest);
+        } catch (Exception e) {
+            System.out.println("Veulliez entrer un nombre entier");
+        } finally {
+            System.out.println("entry tested for integer value");
+        }
+        return testedString;
     }
 
     private void listCharacter() {
@@ -245,6 +304,7 @@ public class MenuMain {
             this.characterList[characterCounter] = character;
             System.out.println("Personnage sauvegardé");
         } else {
+            characterCounter--;
             System.out.println("Personnage pas sauvegardé");
         }
     }
@@ -256,5 +316,4 @@ public class MenuMain {
     private int generateRandom(int min, int max) {
         return min + (int) (Math.random() * (max - min + 1));
     }
-
 }
