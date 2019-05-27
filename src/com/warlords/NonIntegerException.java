@@ -4,6 +4,6 @@ public class NonIntegerException extends Exception {
 
     @Override
     public String getMessage() {
-        return "Veuillez entrer un nombre entier !";
+        return "VEUILLEZ ENTRER UN NOMBRE ENTIER !";
     }
 }

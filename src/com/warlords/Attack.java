@@ -41,9 +41,5 @@ public abstract class Attack {
         this.name = name;
         this.level = level;
     }
-
-    public String toString() {
-        return "Votre arme s'appelle: " + this.getName() + " et est de niveau: " + this.getLevel() + "\n";
-    }
 }
 

@@ -71,6 +71,12 @@ public class Magician extends Warlord {
 
 
     //  constructor
+    public Magician(String name, String image, int lifeLevel, int attackPower) {
+        super(name, image, lifeLevel, attackPower);
+        this.attack = new Spell();
+        this.defense = new Potion();
+    }
+
     public Magician(String name, String image, int lifeLevel, int attackPower, Attack attack, Defense defense) {
         super(name, image, lifeLevel, attackPower, attack, defense);
     }

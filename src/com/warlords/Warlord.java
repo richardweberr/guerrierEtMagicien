@@ -62,6 +62,14 @@ public abstract class Warlord {
         this.name = name;
     }
 
+    public Warlord(String name, String image, int lifeLevel, int attackPower){
+        this.name = name;
+        this.image = image;
+        this.lifeLevel = lifeLevel;
+        this.attackPower = attackPower;
+    }
+
+
     public Warlord(String name, String image, int lifeLevel, int attackPower, Attack attack, Defense defense) {
         this.name = name;
         this.image = image;

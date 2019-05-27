@@ -71,6 +71,11 @@ public class Warrior extends Warlord {
 
 
     //  constructor
+    public Warrior(String name, String image, int lifeLevel, int attackPower) {
+        super(name, image, lifeLevel, attackPower);
+        this.attack = new Weapon();
+        this.defense = new Shield();
+    }
 
     public Warrior(String name, String image, int lifeLevel, int attackPower, Attack attack, Defense defense) {
         super(name, image, lifeLevel, attackPower, attack, defense);

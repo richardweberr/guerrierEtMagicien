@@ -40,4 +40,9 @@ public class Weapon extends Attack {
     public Weapon(String name, int level) {
         super(name, level);
     }
+
+
+    public String toString() {
+        return "Votre arme s'appelle: " + this.getName() + " et est de niveau: " + this.getLevel() + "\n";
+    }
 }

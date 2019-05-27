@@ -94,7 +94,8 @@ public class MenuMain {
 
     /**
      * display in console the MENU for characters options
-     * @param characterIndex
+     *
+     * @param characterIndex index of character
      */
     private void characterMenu(int characterIndex) {
         if (characterIndex != 0) {
@@ -135,6 +136,7 @@ public class MenuMain {
 
     /**
      * display in console the MENU to modify character attributes
+     *
      * @param characterIndex
      */
     private void characterAttributesMenu(int characterIndex) {
@@ -193,6 +195,7 @@ public class MenuMain {
 
     /**
      * display in console a MENU to ask for a class choice
+     *
      * @return the input string
      */
     private void createWarlord() {
@@ -213,7 +216,7 @@ public class MenuMain {
     }
 
     /**
-     *  display in console the index and name of a chararcter
+     * display in console the index and name of a chararcter
      */
     private void listCharacter() {
         if (this.getCharacterList().size() > 1) {
@@ -229,19 +232,29 @@ public class MenuMain {
 
     /**
      * display in console a dialog to select a character
+     *
      * @return index of chararcter in characterList
      */
     private int chooseCharacter() {
         int characterIndex = 0;
         if (this.getCharacterList().size() > 1) {
-            System.out.println("Entrez le numero du personnage que vous voulez selectionner");
-            String characterIndexToTest = this.sc.nextLine();
-            int characterIndexNum = testInteger(characterIndexToTest);
-            for (int i = 1; i < this.getCharacterList().size(); i++) {
-                if (characterIndexNum == i) {
-                    characterIndex = characterIndexNum;
-                } else {
-                    System.out.println("Entrez un numero de personnage");
+            int characterIndexNum = 0;
+            while (characterIndexNum == 0) {
+                System.out.println("Entrez le numero du personnage que vous voulez selectionner");
+                String characterIndexToTest = this.sc.nextLine();
+                try {
+                    characterIndexNum = testInteger(characterIndexToTest);
+                    if (characterIndexNum < this.getCharacterList().size()) {
+                        for (int i = 1; i < this.getCharacterList().size(); i++) {
+                            if (characterIndexNum == i) {
+                                characterIndex = characterIndexNum;
+                            }
+                        }
+                    } else {
+                        System.out.println("Ce personnage n'existe pas");
+                    }
+                } catch (NonIntegerException error) {
+                    System.out.println(error.getMessage());
                 }
             }
         }
@@ -250,6 +263,7 @@ public class MenuMain {
 
     /**
      * display in console a dialog to ask for a name
+     *
      * @return the input string
      */
     private String attributeDialogName() {
@@ -259,6 +273,7 @@ public class MenuMain {
 
     /**
      * display in console a dialog to ask for an image
+     *
      * @return the input string
      */
     private String attributeDialogImage() {
@@ -268,6 +283,7 @@ public class MenuMain {
 
     /**
      * display in console a dialog to ask for a lifelevel
+     *
      * @return the input integer
      */
     private int attributeDialogLifeLevel() {
@@ -278,13 +294,18 @@ public class MenuMain {
                     "Pour les Guerriers: " + Warrior.getMINLIFELEVEL() + " et " + Warrior.getMAXLIFELEVEL() + "\n" +
                     "Pour les Magiciens: " + Magician.getMINLIFELEVEL() + " et " + Magician.getMAXLIFELEVEL());
             String stringToTest = sc.nextLine();
-            lifeLevel = testInteger(stringToTest);
+            try {
+                lifeLevel = testInteger(stringToTest);
+            } catch (NonIntegerException error) {
+                System.out.println(error.getMessage());
+            }
             return lifeLevel;
         } while (lifeLevel == 0);
     }
 
     /**
      * display in console a dialog to ask for an attackpower
+     *
      * @return the input integer
      */
     private int attributeDialogAttackPower() {
@@ -295,13 +316,18 @@ public class MenuMain {
                     "Pour les Guerriers: " + Warrior.getMINATTACKPOWER() + " et " + Warrior.getMAXATTACKPOWER() + "\n" +
                     "Pour les Magiciens: " + Magician.getMINATTACKPOWER() + " et " + Magician.getMAXATTACKPOWER());
             String stringToTest = sc.nextLine();
-            attackPower = testInteger(stringToTest);
+            try {
+                attackPower = testInteger(stringToTest);
+            } catch (NonIntegerException error) {
+                System.out.println(error.getMessage());
+            }
             return attackPower;
         } while (attackPower == 0);
     }
 
     /**
      * display in console a dialog to ask for a weapon or spell name
+     *
      * @return the input string
      */
     private String attributeDialogAttackName() {
@@ -311,6 +337,7 @@ public class MenuMain {
 
     /**
      * display in console a dialog to ask for a weapon or spell level
+     *
      * @return the input integer
      */
     private int attributeDialogAttackLevel() {
@@ -321,13 +348,18 @@ public class MenuMain {
                     "Pour les Armes: " + Weapon.getMINLEVEL() + " et " + Weapon.getMAXLEVEL() + "\n" +
                     "Pour les Sorts: " + Spell.getMINLEVEL() + " et " + Spell.getMAXLEVEL());
             String stringToTest = sc.nextLine();
-            attackLevel = testInteger(stringToTest);
+            try {
+                attackLevel = testInteger(stringToTest);
+            } catch (NonIntegerException error) {
+                System.out.println(error.getMessage());
+            }
             return attackLevel;
         } while (attackLevel == 0);
     }
 
     /**
      * display in console a dialog to ask for a shield or potion name
+     *
      * @return the input string
      */
     private String attributeDialogDefenseName() {
@@ -353,9 +385,13 @@ public class MenuMain {
         System.out.println("Entrez le nom de votre bouclier");
         String shieldName = this.sc.nextLine();
 
-        Weapon weapon = new Weapon(weaponName, weaponLevel);
-        Shield shield = new Shield(shieldName);
-        character = new Warrior(name, image, lifeLevel, attackPower, weapon, shield);
+//        Weapon weapon = new Weapon(weaponName, weaponLevel);
+//        Shield shield = new Shield(shieldName);
+//        character = new Warrior(name, image, lifeLevel, attackPower, weapon, shield);
+        character = new Warrior(name, image, lifeLevel, attackPower);
+        character.attack.setName(weaponName);
+        character.attack.setLevel(weaponLevel);
+        character.defense.setName(shieldName);
 
         this.storeCharacter(character);
     }
@@ -378,15 +414,20 @@ public class MenuMain {
         System.out.println("Entrez le nom de votre philtre");
         String potionName = this.sc.nextLine();
 
-        Spell spell = new Spell(spellName, spellLevel);
-        Potion potion = new Potion(potionName);
-        character = new Magician(name, image, lifeLevel, attackPower, spell, potion);
+//        Spell spell = new Spell(spellName, spellLevel);
+//        Potion potion = new Potion(potionName);
+//        character = new Magician(name, image, lifeLevel, attackPower, spell, potion);
+        character = new Magician(name, image, lifeLevel, attackPower);
+        character.attack.setName(spellName);
+        character.attack.setLevel(spellLevel);
+        character.defense.setName(potionName);
 
         this.storeCharacter(character);
     }
 
     /**
      * store chararcter in chararcterList
+     *
      * @param character
      */
     private void storeCharacter(Warlord character) {
@@ -403,13 +444,21 @@ public class MenuMain {
 
     /**
      * delete selected character
+     *
      * @param i chararcterindex
      */
     private void deleteCharacter(int i) {
         this.getCharacterList().remove(i);
     }
 
-    //    private int testInteger(String stringToTest) {
+//    /**
+//     * convert a string to an integer value if possible
+//     *catches a parseInt NumberFormatException
+//     *
+//     * @param stringToTest string to test for integer value
+//     * @return the integer value
+//     */
+//    private int testInteger(String stringToTest) {
 //        int testedString = 0;
 //        try {
 //            testedString = Integer.parseInt(stringToTest);
@@ -423,27 +472,29 @@ public class MenuMain {
 
     /**
      * converts a string to integer if possible
-     * @exception if it fails
-     * @param stringToTest
-     * @return testedInteger
+     *
+     * @param stringToTest , the string to test to be an integer or not
+     * @return the integer
+     * @throws if it fails, throws a NonIntegerException object
      */
-    private int testInteger(String stringToTest) {
+    private int testInteger(String stringToTest) throws NonIntegerException {
         int testedString = 0;
         try {
             testedString = Integer.parseInt(stringToTest);
         } catch (NumberFormatException error) {
-            System.out.println("Veulliez entrer un nombre entier " + error.getMessage());
+            throw new NonIntegerException();
         } finally {
-            System.out.println("entry tested for integer value");
+//            System.out.println("entry tested for integer value");
         }
         return testedString;
     }
 
     /**
      * generate a random integer in the min, max interval
-     * @param min
-     * @param max
-     * @return the random int
+     *
+     * @param min min value of interval
+     * @param max max value of interval
+     * @return the random integer
      */
     private int generateRandom(int min, int max) {
         return min + (int) (Math.random() * (max - min + 1));
