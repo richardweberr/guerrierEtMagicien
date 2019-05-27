@@ -31,24 +31,22 @@ public class Warrior extends Warlord {
     public void setLifeLevel(int lifeLevel) {
         if (lifeLevel <= getMINLIFELEVEL()) {
             lifeLevel = getMINLIFELEVEL();
-            super.setLifeLevel(lifeLevel);
         }
         if (lifeLevel >= getMAXLIFELEVEL()) {
             lifeLevel = getMAXLIFELEVEL();
-            super.setLifeLevel(lifeLevel);
         }
+        super.setLifeLevel(lifeLevel);
     }
 
     @Override
     public void setAttackPower(int attackPower) {
         if (attackPower <= getMINATTACKPOWER()) {
             attackPower = getMINATTACKPOWER();
-            super.setAttackPower(attackPower);
         }
         if (attackPower >= getMAXATTACKPOWER()) {
             attackPower = getMAXATTACKPOWER();
-            super.setAttackPower(attackPower);
         }
+        super.setAttackPower(attackPower);
     }
 
     @Override

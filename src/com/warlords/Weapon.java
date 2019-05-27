@@ -21,12 +21,11 @@ public class Weapon extends Attack {
     public void setLevel(int level) {
         if (level <= getMINLEVEL()) {
             level = getMINLEVEL();
-            super.setLevel(level);
         }
         if (level >= getMAXLEVEL()) {
             level = getMAXLEVEL();
-            super.setLevel(level);
         }
+        super.setLevel(level);
     }
 
 

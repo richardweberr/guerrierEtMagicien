@@ -173,7 +173,9 @@ public class MenuMain {
                     "Valeur entre :\n" +
                     "Pour les Guerriers: " + Warrior.getMINLIFELEVEL() + " et " + Warrior.getMAXLIFELEVEL() + "\n" +
                     "Pour les Magiciens: " + Magician.getMINLIFELEVEL() + " et " + Magician.getMAXLIFELEVEL());
-            return testInteger(sc.nextLine());
+            String stringToTest = sc.nextLine();
+            lifeLevel = testInteger(stringToTest);
+            return lifeLevel;
         } while (lifeLevel == 0);
     }
 
@@ -184,7 +186,9 @@ public class MenuMain {
                     "Valeur entre :\n" +
                     "Pour les Guerriers: " + Warrior.getMINATTACKPOWER() + " et " + Warrior.getMAXATTACKPOWER() + "\n" +
                     "Pour les Magiciens: " + Magician.getMINATTACKPOWER() + " et " + Magician.getMAXATTACKPOWER());
-            return testInteger(sc.nextLine());
+            String stringToTest = sc.nextLine();
+            attackPower = testInteger(stringToTest);
+            return attackPower;
         } while (attackPower == 0);
     }
 
@@ -194,15 +198,16 @@ public class MenuMain {
     }
 
     private int attributeDialogAttackLevel() {
-        int attacklevel = 0;
+        int attackLevel = 0;
         do {
             System.out.println("Entrez le niveau de votre arme/sort\n" +
                     "Valeur entre :\n" +
                     "Pour les Armes: " + Weapon.getMINLEVEL() + " et " + Weapon.getMAXLEVEL() + "\n" +
                     "Pour les Sorts: " + Spell.getMINLEVEL() + " et " + Spell.getMAXLEVEL());
-            
-            return testInteger(sc.nextLine());
-        } while (attacklevel == 0);
+            String stringToTest = sc.nextLine();
+            attackLevel = testInteger(stringToTest);
+            return attackLevel;
+        } while (attackLevel == 0);
     }
 
     private String attributeDialogDefenseName() {
@@ -210,12 +215,24 @@ public class MenuMain {
         return this.sc.nextLine();
     }
 
+//    private int testInteger(String stringToTest) {
+//        int testedString = 0;
+//        try {
+//            testedString = Integer.parseInt(stringToTest);
+//        } catch (NumberFormatException error) {
+//            System.out.println("Veulliez entrer un nombre entier " + error.getMessage());
+//        } finally {
+//            System.out.println("entry tested for integer value");
+//        }
+//        return testedString;
+//    }
+
     private int testInteger(String stringToTest) {
         int testedString = 0;
         try {
             testedString = Integer.parseInt(stringToTest);
-        } catch (Exception e) {
-            System.out.println("Veulliez entrer un nombre entier");
+        } catch (NumberFormatException error) {
+            System.out.println("Veulliez entrer un nombre entier " + error.getMessage());
         } finally {
             System.out.println("entry tested for integer value");
         }
